@@ -1,0 +1,7 @@
+</main>
+<footer class="footer">
+  <small>SCASP classroom prototype &middot; BoCS3100 Advanced Java &middot; fictional data only
+    <c:if test="${not empty requestScope.requestId}"> &middot; ref <c:out value="${requestScope.requestId}"/></c:if></small>
+</footer>
+</body>
+</html>

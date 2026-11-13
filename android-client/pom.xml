@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.scasp</groupId>
+  <artifactId>scasp-parent</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+  <name>SCASP - Smart Campus Academic Services Platform</name>
+
+  <!-- Android client is a separate Gradle project (android-client/) and is not part of this reactor. -->
+  <modules>
+    <module>core</module>
+    <module>persistence-jdbc</module>
+    <module>enterprise-services</module>
+    <module>web-application</module>
+    <module>rmi-administration</module>
+  </modules>
+
+  <properties>
+    <maven.compiler.release>21</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <junit.version>5.10.2</junit.version>
+    <jakartaee.version>10.0.0</jakartaee.version>
+    <mysql.connector.version>8.4.0</mysql.connector.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency><groupId>com.scasp</groupId><artifactId>scasp-core</artifactId><version>${project.version}</version></dependency>
+      <dependency><groupId>com.scasp</groupId><artifactId>scasp-persistence-jdbc</artifactId><version>${project.version}</version></dependency>
+      <dependency><groupId>com.scasp</groupId><artifactId>scasp-enterprise-services</artifactId><version>${project.version}</version></dependency>
+      <dependency><groupId>jakarta.platform</groupId><artifactId>jakarta.jakartaee-api</artifactId><version>${jakartaee.version}</version><scope>provided</scope></dependency>
+      <dependency><groupId>com.mysql</groupId><artifactId>mysql-connector-j</artifactId><version>${mysql.connector.version}</version></dependency>
+      <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><version>${junit.version}</version><scope>test</scope></dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><scope>test</scope></dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.13.0</version>
+          <configuration><compilerArgs><arg>-Xlint:all,-serial,-processing</arg></compilerArgs></configuration></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>3.2.5</version></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.4.1</version></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId><version>3.4.0</version></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-ejb-plugin</artifactId><version>3.2.1</version></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId><version>3.6.1</version></plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>

@@ -1,0 +1,7 @@
+<c:if test="${not empty sessionScope.flash}">
+  <p class="notice" role="status"><c:out value="${sessionScope.flash}"/></p>
+  <c:remove var="flash" scope="session"/>
+</c:if>
+<c:if test="${not empty error}">
+  <p class="error" role="alert"><c:out value="${error}"/></p>
+</c:if>

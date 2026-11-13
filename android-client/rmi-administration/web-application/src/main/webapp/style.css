@@ -1,0 +1,28 @@
+*{box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;background:#f2f5f8;color:#18212b;margin:0;line-height:1.45}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;padding:8px;z-index:9}
+.topbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px;background:#174f86;color:#fff;padding:10px 20px}
+.brand{font-weight:bold;font-size:1.2rem;margin-right:12px}
+.topbar nav ul{display:flex;flex-wrap:wrap;gap:4px;list-style:none;margin:0;padding:0}
+.topbar nav a{color:#fff;text-decoration:none;padding:6px 10px;border-radius:6px}
+.topbar nav a:hover,.topbar nav a:focus,.topbar nav a[aria-current=page]{background:#0d3560;outline:2px solid #fff3}
+.logout{margin-left:auto;display:flex;align-items:center;gap:8px}.who{font-size:.9rem}
+.panel{max-width:1000px;margin:24px auto;background:#fff;padding:24px;border-radius:12px;box-shadow:0 4px 18px #0001}
+h1{margin-top:0}h2{margin-top:28px}
+label{display:block;margin:12px 0 4px;font-weight:600}
+input,select,textarea{display:block;width:100%;padding:10px;border:1px solid #8a96a3;border-radius:6px;font:inherit}
+input:focus,select:focus,textarea:focus,button:focus{outline:3px solid #f2b705;outline-offset:1px}
+button{padding:9px 14px;background:#174f86;color:#fff;border:0;border-radius:6px;cursor:pointer;font:inherit;margin-top:8px}
+button.secondary{background:#4d5761}
+.inline{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.inline label{margin:0}.inline input,.inline select{width:auto}
+.stack{max-width:520px}
+table{width:100%;border-collapse:collapse;margin:16px 0}th,td{text-align:left;padding:9px;border-bottom:1px solid #ddd;vertical-align:top}
+th{background:#eef2f6}
+.notice{background:#e6f4e6;border-left:4px solid #2e7d32;padding:10px;border-radius:6px}
+.error{background:#fdecea;border-left:4px solid #b3261e;padding:10px;border-radius:6px}
+.field-error{display:block;color:#b3261e;font-size:.9rem;margin-top:4px}
+.empty{color:#4d5761;font-style:italic}.hint{color:#4d5761;font-size:.9rem}
+.card{border:1px solid #dde3ea;border-radius:8px;padding:10px 14px;margin:10px 0}.card h3{margin:0 0 6px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.footer{text-align:center;color:#4d5761;padding:12px}
+@media (max-width:640px){.panel{margin:0;border-radius:0;padding:14px}table{font-size:.9rem}th,td{padding:6px}.logout{margin-left:0}}

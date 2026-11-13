@@ -1,0 +1,35 @@
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<c:set var="me" value="${sessionScope.user}"/>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SCASP - <c:out value="${pageTitle}"/></title>
+  <link rel="stylesheet" href="${ctx}/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <span class="brand">SCASP</span>
+  <c:if test="${not empty me}">
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="${ctx}/dashboard" ${activeNav == 'dashboard' ? 'aria-current="page"' : ''}>Dashboard</a></li>
+        <li><a href="${ctx}/courses" ${activeNav == 'courses' ? 'aria-current="page"' : ''}>Courses</a></li>
+        <li><a href="${ctx}/register" ${activeNav == 'register' ? 'aria-current="page"' : ''}>Registration</a></li>
+        <li><a href="${ctx}/requests" ${activeNav == 'requests' ? 'aria-current="page"' : ''}>Requests</a></li>
+        <c:if test="${me.staff}">
+          <li><a href="${ctx}/waitlists" ${activeNav == 'waitlists' ? 'aria-current="page"' : ''}>Waiting lists</a></li>
+          <li><a href="${ctx}/reports" ${activeNav == 'reports' ? 'aria-current="page"' : ''}>Reports</a></li>
+        </c:if>
+      </ul>
+    </nav>
+    <form class="logout" method="post" action="${ctx}/logout">
+      <input type="hidden" name="csrf" value="${fn:escapeXml(sessionScope.csrf)}">
+      <span class="who"><c:out value="${me.name}"/> (<c:out value="${me.role}"/>)</span>
+      <button class="secondary" type="submit">Log out</button>
+    </form>
+  </c:if>
+</header>
+<main id="main" class="panel">
