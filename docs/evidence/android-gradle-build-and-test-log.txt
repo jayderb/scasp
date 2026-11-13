@@ -1,0 +1,72 @@
+# Android clean build + JVM unit/Robolectric tests - captured 2026-11-13 14:33 SAST (UTC+2). Command: ./gradlew clean assembleDebug testDebugUnitTest --console=plain (Gradle 8.14.3 wrapper, AGP 8.13.2, Kotlin 2.2.21, JDK 21.0.13, Android SDK platform 35). Result: BUILD SUCCESSFUL, 48 tests: 47 passed, 0 failures, 1 skipped (LiveServerTest, runs only with SCASP_LIVE_URL; see android-live-server-check.txt).
+> Task :app:clean
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:dataBindingMergeDependencyArtifactsDebug
+> Task :app:generateDebugResValues
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:processDebugNavigationResources
+> Task :app:generateDebugBuildConfig
+> Task :app:parseDebugLocalResources
+> Task :app:checkDebugAarMetadata
+> Task :app:compileDebugNavigationResources
+> Task :app:mapDebugSourceSetPaths
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :app:processDebugManifestForPackage
+> Task :app:javaPreCompileDebug
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets
+> Task :app:compressDebugAssets
+> Task :app:desugarDebugFileDependencies
+> Task :app:mergeDebugJniLibFolders
+> Task :app:mergeDebugNativeLibs NO-SOURCE
+> Task :app:stripDebugDebugSymbols NO-SOURCE
+> Task :app:validateSigningDebug
+> Task :app:checkDebugDuplicateClasses
+> Task :app:writeDebugAppMetadata
+> Task :app:writeDebugSigningConfigVersions
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:mergeLibDexDebug
+> Task :app:javaPreCompileDebugUnitTest
+> Task :app:mergeDebugResources
+> Task :app:processDebugUnitTestManifest
+> Task :app:dataBindingGenBaseClassesDebug
+> Task :app:processDebugResources
+> Task :app:packageDebugUnitTestForUnitTest
+> Task :app:generateDebugUnitTestConfig
+> Task :app:mergeExtDexDebug
+
+> Task :app:compileDebugKotlin
+w: file://<project>/android-client/app/src/main/java/com/scasp/mobile/data/remote/JsonParser.kt:71:112 Java type mismatch: inferred type is 'Nothing?', but 'String' was expected.
+w: file://<project>/android-client/app/src/main/java/com/scasp/mobile/ui/campus/CampusServicesActivity.kt:22:8 'class CancellationSignal : Any' is deprecated. Deprecated in Java.
+w: file://<project>/android-client/app/src/main/java/com/scasp/mobile/ui/campus/CampusServicesActivity.kt:47:25 'class CancellationSignal : Any' is deprecated. Deprecated in Java.
+w: file://<project>/android-client/app/src/main/java/com/scasp/mobile/ui/campus/CampusServicesActivity.kt:123:18 'constructor(): CancellationSignal' is deprecated. Deprecated in Java.
+w: file://<project>/android-client/app/src/main/java/com/scasp/mobile/ui/campus/CampusServicesActivity.kt:124:35 'static fun getCurrentLocation(p0: LocationManager, p1: String, p2: CancellationSignal?, p3: Executor, p4: Consumer<Location!>): Unit' is deprecated. Deprecated in Java.
+
+> Task :app:compileDebugJavaWithJavac
+> Task :app:dexBuilderDebug
+> Task :app:mergeDebugGlobalSynthetics
+> Task :app:processDebugJavaRes
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:bundleDebugClassesToRuntimeJar
+> Task :app:mergeProjectDexDebug
+> Task :app:mergeDebugJavaResource
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect
+> Task :app:assembleDebug
+> Task :app:compileDebugUnitTestKotlin
+> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processDebugUnitTestJavaRes
+> Task :app:testDebugUnitTest
+
+BUILD SUCCESSFUL in 17s
+49 actionable tasks: 49 executed
+EXIT=0

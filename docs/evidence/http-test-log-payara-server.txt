@@ -1,5 +1,5 @@
-# HTTP test on Payara Server 6 (full server, domain1, deployed with asadmin multimode --file deploy/payara/payara-server-setup.asadmin) - captured 2026-11-13 13:50 CAT
-# JDK 21.0.13, MySQL 8.4.6, fresh sample database
+# HTTP test on Payara Server 6.2025.10 (full server, domain1, deployed with asadmin multimode --file deploy/payara/payara-server-setup.asadmin, MySQL port changed to 3307 for this box) - captured 2026-11-13 14:31 SAST (UTC+2)
+# JDK 21.0.13, MySQL 8.4.6, fresh sample database (DatabaseSetup). Command: SCASP_API_TOKEN=<token> bash scripts/http-smoke-test.sh
 
 == Unauthenticated access
 PASS  GET /courses without session redirects to login (HTTP 302)
@@ -72,4 +72,32 @@ PASS  missing page is 404 (HTTP 404)
 PASS  API with wrong token is 401 (HTTP 401)
 PASS  API with configured token (HTTP 200)
 PASS  API lists the new announcement (page contains 'Library hours')
-== Result: 64 passed, 0 failed
+== Mobile JSON API (Stage 10 Android client)
+PASS  API login without client header is 403 (HTTP 403)
+PASS  API login wrong password is 401 (HTTP 401)
+PASS  API courses without session is 401 (HTTP 401)
+PASS  API login STU001 (HTTP 200)
+PASS  API login returns JSON user (page contains '"userId":"STU001"')
+PASS  API me (HTTP 200)
+PASS  API courses?q=java (HTTP 200)
+PASS  API course JSON (page contains '"courseCode":"CSC301"')
+PASS  API campus services (HTTP 200)
+PASS  API campus service coordinates (page contains '"name":"Main Library"')
+PASS  API register without CSRF header is 403 (HTTP 403)
+PASS  API register DB302 (HTTP 200)
+PASS  API register result (page contains '"result":"REGISTERED"')
+PASS  API duplicate registration is 409 (HTTP 409)
+PASS  API student cannot read another student (gets own) (HTTP 200)
+PASS  API registrations are the caller's (page contains '"studentId":"STU001"')
+PASS  API invalid request is 400 (HTTP 400)
+PASS  API submit request is 201 (HTTP 201)
+PASS  API my requests (HTTP 200)
+PASS  API request listed (page contains '"category":"CLEARANCE"')
+PASS  API logout (HTTP 200)
+PASS  API session ended (HTTP 401)
+PASS  API login STAFF01 (HTTP 200)
+PASS  API staff registrations need studentId (400) (HTTP 400)
+PASS  API staff reads STU001 registrations (HTTP 200)
+PASS  API staff sees DB302 (page contains '"courseCode":"DB302"')
+PASS  API staff cannot submit a student request (403) (HTTP 403)
+== Result: 91 passed, 0 failed

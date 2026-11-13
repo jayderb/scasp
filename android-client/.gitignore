@@ -1,0 +1,11 @@
+# Machine-specific and generated files: never commit
+local.properties
+.gradle/
+build/
+app/build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.iml
+.idea/
+.kotlin/

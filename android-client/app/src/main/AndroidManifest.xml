@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Talk to the SCASP web application (Payara). -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Requested at run time ONLY when the user taps "Show my position" on the Campus services screen. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- Android 13+: asked only when the user switches on background sync. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <uses-feature android:name="android.hardware.location" android:required="false" />
+
+    <!-- Android 11+ package visibility: lets the app see map apps for the geo: implicit intent. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="geo" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".ScaspApp"
+        android:allowBackup="false"
+        android:icon="@drawable/ic_launcher_scasp"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".ui.login.LoginActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.home.HomeActivity" android:exported="false" android:label="@string/home_title" />
+        <activity android:name=".ui.courses.CoursesActivity" android:exported="false" android:label="@string/courses_title"
+            android:parentActivityName=".ui.home.HomeActivity" />
+        <activity android:name=".ui.registrations.RegistrationsActivity" android:exported="false" android:label="@string/my_registrations"
+            android:parentActivityName=".ui.home.HomeActivity" />
+        <activity android:name=".ui.requests.RequestsActivity" android:exported="false" android:label="@string/service_requests"
+            android:parentActivityName=".ui.home.HomeActivity" />
+        <activity android:name=".ui.campus.CampusServicesActivity" android:exported="false" android:label="@string/campus_title"
+            android:parentActivityName=".ui.home.HomeActivity" />
+    </application>
+</manifest>

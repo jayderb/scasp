@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Shared list block: data-origin banner, error, empty state and pull-to-refresh list. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+    <TextView android:id="@+id/banner" style="@style/Banner" android:visibility="gone" android:accessibilityLiveRegion="polite" />
+    <TextView android:id="@+id/error" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:padding="8dp" android:textColor="#B00020" android:visibility="gone" android:accessibilityLiveRegion="assertive" />
+    <TextView android:id="@+id/empty" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:padding="16dp" android:visibility="gone" />
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout android:id="@+id/swipe"
+        android:layout_width="match_parent" android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/recycler"
+            android:layout_width="match_parent" android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

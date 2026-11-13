@@ -93,6 +93,38 @@ if [ -n "${SCASP_API_TOKEN:-}" ]; then
   check "API with configured token" 200 "$(code -H "Authorization: Bearer $SCASP_API_TOKEN" "$BASE/api/announcements")"
   has "API lists the new announcement" "Library hours"
 fi
+echo "== Mobile JSON API (Stage 10 Android client)"
+JAR_A=$(mktemp); JAR_B=$(mktemp); H='X-SCASP-Client: test'
+check "API login without client header is 403" 403 "$(code -c "$JAR_A" -b "$JAR_A" -d 'userId=STU001&password=student123' "$BASE/api/login")"
+check "API login wrong password is 401" 401 "$(code -c "$JAR_A" -b "$JAR_A" -H "$H" -d 'userId=STU001&password=wrong' "$BASE/api/login")"
+check "API courses without session is 401" 401 "$(code "$BASE/api/courses")"
+check "API login STU001" 200 "$(code -c "$JAR_A" -b "$JAR_A" -H "$H" -d 'userId=STU001&password=student123' "$BASE/api/login")"
+has "API login returns JSON user" '"userId":"STU001"'
+AT=$(grep -o '"csrfToken":"[^"]*"' "$BODY" | sed 's/.*:"//;s/"$//')
+check "API me" 200 "$(code -c "$JAR_A" -b "$JAR_A" "$BASE/api/me")"
+check "API courses?q=java" 200 "$(code -c "$JAR_A" -b "$JAR_A" "$BASE/api/courses?q=java")"
+has "API course JSON" '"courseCode":"CSC301"'
+check "API campus services" 200 "$(code -c "$JAR_A" -b "$JAR_A" "$BASE/api/campus-services")"
+has "API campus service coordinates" '"name":"Main Library"'
+check "API register without CSRF header is 403" 403 "$(code -c "$JAR_A" -b "$JAR_A" -d 'action=register&courseCode=DB302' "$BASE/api/registrations")"
+check "API register DB302" 200 "$(code -c "$JAR_A" -b "$JAR_A" -H "X-CSRF-Token: $AT" -d 'action=register&courseCode=DB302' "$BASE/api/registrations")"
+has "API register result" '"result":"REGISTERED"'
+check "API duplicate registration is 409" 409 "$(code -c "$JAR_A" -b "$JAR_A" -H "X-CSRF-Token: $AT" -d 'action=register&courseCode=DB302' "$BASE/api/registrations")"
+check "API student cannot read another student (gets own)" 200 "$(code -c "$JAR_A" -b "$JAR_A" "$BASE/api/registrations?studentId=STU002")"
+has "API registrations are the caller's" '"studentId":"STU001"'
+check "API invalid request is 400" 400 "$(code -c "$JAR_A" -b "$JAR_A" -H "X-CSRF-Token: $AT" -d 'category=CLEARANCE&description=x&priority=9' "$BASE/api/requests")"
+check "API submit request is 201" 201 "$(code -c "$JAR_A" -b "$JAR_A" -H "X-CSRF-Token: $AT" -d 'category=CLEARANCE&priority=2' --data-urlencode 'description=Library clearance for graduation' "$BASE/api/requests")"
+check "API my requests" 200 "$(code -c "$JAR_A" -b "$JAR_A" "$BASE/api/requests")"
+has "API request listed" '"category":"CLEARANCE"'
+check "API logout" 200 "$(code -c "$JAR_A" -b "$JAR_A" -H "X-CSRF-Token: $AT" -X POST "$BASE/api/logout")"
+check "API session ended" 401 "$(code -c "$JAR_A" -b "$JAR_A" "$BASE/api/me")"
+check "API login STAFF01" 200 "$(code -c "$JAR_B" -b "$JAR_B" -H "$H" -d 'userId=STAFF01&password=staff123' "$BASE/api/login")"
+BT=$(grep -o '"csrfToken":"[^"]*"' "$BODY" | sed 's/.*:"//;s/"$//')
+check "API staff registrations need studentId (400)" 400 "$(code -c "$JAR_B" -b "$JAR_B" "$BASE/api/registrations")"
+check "API staff reads STU001 registrations" 200 "$(code -c "$JAR_B" -b "$JAR_B" "$BASE/api/registrations?studentId=STU001")"
+has "API staff sees DB302" '"courseCode":"DB302"'
+check "API staff cannot submit a student request (403)" 403 "$(code -c "$JAR_B" -b "$JAR_B" -H "X-CSRF-Token: $BT" -d 'category=OTHER&priority=1&description=Staff test' "$BASE/api/requests")"
+rm -f "$JAR_A" "$JAR_B"
 rm -f "$JAR_S" "$JAR_T" "$JAR_X" "$BODY"
 echo "== Result: $PASS passed, $FAIL failed"
 [ "$FAIL" -eq 0 ]

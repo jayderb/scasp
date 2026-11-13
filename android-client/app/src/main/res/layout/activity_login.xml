@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="24dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/home_title" android:textAppearance="?attr/textAppearanceHeadline5" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" android:text="@string/login_intro" />
+        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="@string/server_url">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/serverUrl"
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textUri" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="@string/user_id">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/userId"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="textCapCharacters|textNoSuggestions" android:autofillHints="username" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="@string/password">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/password"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="textPassword" android:imeOptions="actionDone" android:autofillHints="password" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.switchmaterial.SwitchMaterial android:id="@+id/demoFallback"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp"
+            android:text="@string/demo_fallback" />
+        <TextView android:id="@+id/error" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:textColor="#B00020" android:visibility="gone" android:accessibilityLiveRegion="assertive" />
+        <ProgressBar android:id="@+id/progress" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" android:visibility="gone" />
+        <Button android:id="@+id/signIn" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" android:text="@string/sign_in" />
+    </LinearLayout>
+</ScrollView>

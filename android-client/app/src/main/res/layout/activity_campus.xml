@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="8dp"
+        android:text="@string/campus_intro" />
+    <Button android:id="@+id/showPosition" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp" android:text="@string/show_position" />
+    <TextView android:id="@+id/locationText" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:padding="8dp" android:visibility="gone" android:accessibilityLiveRegion="polite" />
+    <Button android:id="@+id/openSettings" style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/open_settings"
+        android:visibility="gone" />
+    <include android:id="@+id/list" layout="@layout/view_status_list" />
+</LinearLayout>

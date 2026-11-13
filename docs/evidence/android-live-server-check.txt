@@ -1,0 +1,13 @@
+# Android HttpScaspApi + JsonParser against the live SCASP server (Payara Server 6.2025.10, fresh sample DB) - captured 2026-11-13 14:32 SAST (UTC+2)
+# Command: SCASP_LIVE_URL=http://localhost:8080/scasp ./gradlew testDebugUnitTest --tests '*LiveServerTest*' -i   (JVM, not an emulator)
+
+LiveServerTest > studentJourneyAgainstTheRealServer STANDARD_OUT
+    register: STU004 is registered for HCI308.
+    duplicate: HTTP 409 Duplicate registration
+    request: Request #1 submitted.
+    campus service: Campus Clinic -15.418,28.282
+    campus service: Main Library -15.4167,28.2833
+    campus service: Registry -15.417,28.284
+    withdraw: STU004 withdrawn from HCI308.
+    after logout: HTTP 401
+BUILD SUCCESSFUL in 4s

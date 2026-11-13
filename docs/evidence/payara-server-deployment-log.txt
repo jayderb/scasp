@@ -1,0 +1,17 @@
+# Payara Server 6.2025.10 deployment - captured 2026-11-13 14:31 SAST (UTC+2)
+# asadmin multimode --file (copy of deploy/payara/payara-server-setup.asadmin with portNumber=3307)
+  [592e3931] POST /scasp/api/requests -> 201 (4 ms) user=STU001]]
+[2026-11-13T14:30:54.536+0200] [Payara 6.2025.10] [INFO] [] [scasp.http] [tid: _ThreadID=112 _ThreadName=http-thread-pool::http-listener-1(2)] [timeMillis: 1794573054536] [levelValue: 800] [[
+  [0e70b278] GET /scasp/api/requests -> 200 (2 ms) user=STU001]]
+[2026-11-13T14:30:54.548+0200] [Payara 6.2025.10] [INFO] [] [scasp.http] [tid: _ThreadID=114 _ThreadName=http-thread-pool::http-listener-1(4)] [timeMillis: 1794573054548] [levelValue: 800] [[
+  [a8e965e1] POST /scasp/api/logout -> 200 (0 ms) user=-]]
+[2026-11-13T14:30:54.559+0200] [Payara 6.2025.10] [INFO] [] [scasp.http] [tid: _ThreadID=111 _ThreadName=http-thread-pool::http-listener-1(1)] [timeMillis: 1794573054559] [levelValue: 800] [[
+  [9b01e100] GET /scasp/api/me -> 401 (0 ms) user=-]]
+[2026-11-13T14:30:54.600+0200] [Payara 6.2025.10] [INFO] [] [scasp.http] [tid: _ThreadID=113 _ThreadName=http-thread-pool::http-listener-1(3)] [timeMillis: 1794573054600] [levelValue: 800] [[
+  [9c4a41a1] POST /scasp/api/login -> 200 (29 ms) user=STAFF01]]
+[2026-11-13T14:30:54.614+0200] [Payara 6.2025.10] [INFO] [] [scasp.http] [tid: _ThreadID=115 _ThreadName=http-thread-pool::http-listener-1(5)] [timeMillis: 1794573054614] [levelValue: 800] [[
+  [bd6de72e] GET /scasp/api/registrations -> 400 (0 ms) user=STAFF01]]
+[2026-11-13T14:30:54.632+0200] [Payara 6.2025.10] [INFO] [] [scasp.http] [tid: _ThreadID=111 _ThreadName=http-thread-pool::http-listener-1(1)] [timeMillis: 1794573054632] [levelValue: 800] [[
+  [6583f829] GET /scasp/api/registrations -> 200 (4 ms) user=STAFF01]]
+[2026-11-13T14:30:54.649+0200] [Payara 6.2025.10] [INFO] [] [scasp.http] [tid: _ThreadID=113 _ThreadName=http-thread-pool::http-listener-1(3)] [timeMillis: 1794573054649] [levelValue: 800] [[
+  [dfe850a2] POST /scasp/api/requests -> 403 (0 ms) user=STAFF01]]

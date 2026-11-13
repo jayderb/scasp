@@ -1,3 +1,4 @@
+# NOTE: earlier run (Payara Micro, before the Mobile JSON API checks were added: 64 checks). Current result: http-test-log-payara-server.txt (91 checks).
 # HTTP test log (Stages 6/7) - captured 2026-11-13 13:42 CAT
 # WAR deployed on Payara Micro 6.2025.10 (Jakarta EE 10), JDK 21.0.13, MySQL 8.4.6 via JDBC pool jdbc/scasp; fresh sample database.
 # Command: SCASP_API_TOKEN=<token> scripts/http-smoke-test.sh http://127.0.0.1:8080/scasp

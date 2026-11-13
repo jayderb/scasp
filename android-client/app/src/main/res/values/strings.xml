@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">SCASP</string>
+    <string name="home_title">SCASP Student Portal</string>
+    <string name="courses_title">Course catalogue</string>
+    <string name="my_registrations">My registrations</string>
+    <string name="registrations_students_only">My registrations (students only)</string>
+    <string name="service_requests">Service requests</string>
+    <string name="request_queue">Service request queue</string>
+    <string name="campus_title">Campus services</string>
+
+    <string name="login_intro">Sign in with your SCASP account (demo: STU001 / student123).</string>
+    <string name="server_url">Server address</string>
+    <string name="user_id">User id</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="demo_fallback">Use built-in demo data when the server cannot be reached</string>
+    <string name="welcome">Welcome, %1$s (%2$s, %3$s)</string>
+    <string name="connected_to">Server: %1$s</string>
+    <string name="demo_notice">Offline demo mode: the server could not be reached, so you are using built-in sample data. Nothing is sent to the server.</string>
+    <string name="background_sync">Background sync every 15 minutes (notifies you when a waiting-list place becomes a registration)</string>
+    <string name="sign_out">Sign out</string>
+    <string name="signed_out">You have been signed out.</string>
+    <string name="session_expired">Your session has expired. Please sign in again.</string>
+
+    <string name="search_hint">Search code or title</string>
+    <string name="search">Search</string>
+    <string name="register">Register</string>
+    <string name="join_waiting_list">Join waiting list</string>
+    <string name="course_line">%1$d/%2$d enrolled · %3$d seats left · %4$d waiting</string>
+    <string name="empty_courses">No courses match. Clear the search and pull down to refresh.</string>
+
+    <string name="registrations_intro">Your current registrations and waiting-list places. Pull down to refresh.</string>
+    <string name="withdraw">Withdraw</string>
+    <string name="confirm_withdraw">Withdraw from %1$s? If you hold a seat, the first student on the waiting list gets it.</string>
+    <string name="status_registered">Registered</string>
+    <string name="status_waiting">Waiting list, position %1$d</string>
+    <string name="empty_registrations">You have no registrations yet. Open the course catalogue to register.</string>
+
+    <string name="new_request">New service request</string>
+    <string name="category">Category</string>
+    <string name="priority">Priority</string>
+    <string name="description">Description (5–1000 characters)</string>
+    <string name="submit">Submit request</string>
+    <string name="staff_queue_note">Open requests, highest priority first. Assign and update them in the web application.</string>
+    <string name="empty_requests">No service requests yet.</string>
+
+    <string name="campus_intro">Coordinates are ILLUSTRATIVE sample values until the group replaces them with verified campus locations.</string>
+    <string name="show_position">Show my position</string>
+    <string name="open_in_map">Open in map</string>
+    <string name="open_with">Open %1$s with</string>
+    <string name="no_map_app">No map app or browser is installed.</string>
+    <string name="open_settings">Open app settings to allow location</string>
+    <string name="location_why_title">Why SCASP asks for your location</string>
+    <string name="location_why">Your position is used once, on this screen, to show how far you are from each campus service. It is not stored or sent to the server. You can still open every service in a map app without it.</string>
+    <string name="continue_label">Continue</string>
+    <string name="not_now">Not now</string>
+    <string name="locating">Finding your position…</string>
+    <string name="location_off">Location is switched off on this device. Turn it on in Quick Settings and try again.</string>
+    <string name="location_unknown">Your position is not available yet. On the emulator, set a location in Extended controls › Location and try again.</string>
+    <string name="empty_campus">No campus services are configured.</string>
+
+    <string name="sync_channel_name">SCASP updates</string>
+    <string name="promoted_title">You got a seat</string>
+    <string name="promoted_text">You moved from the waiting list into %1$s.</string>
+</resources>

@@ -343,7 +343,7 @@ Every 5 minutes the log also gets `SCASP heartbeat` (EJB timer).
 12. Press F12 → device toolbar (or make the window narrow) to show the responsive layout.
     > **Screenshot 34** → `docs\evidence\34-responsive.png`
 
-### 19. Automated HTTP test (64 checks, PowerShell port of the Linux script)
+### 19. Automated HTTP test (91 checks, PowerShell port of the Linux script)
 Needs a **clean** database: reload it (the two `mysql ... source` lines in step 17), then in the Payara window:
 ```powershell
 C:\tools\payara6\bin\asadmin.bat restart-domain
@@ -351,7 +351,7 @@ powershell -ExecutionPolicy Bypass -File scripts\http-smoke-test.ps1
 ```
 (`scripts\http-smoke-test.bat` does the same if you double-click it.) It uses `curl.exe`, which is built into Windows 10/11.
 To include the API-token checks, run `$env:SCASP_API_TOKEN = "demo-token-for-local-testing"` first, the same value the domain was started with.
-Expected: a list of `PASS ...` lines and finally `== Result: 64 passed, 0 failed` (62 if the token is not set).
+Expected: a list of `PASS ...` lines and finally `== Result: 91 passed, 0 failed` (89 if the token is not set). The section *Mobile JSON API* checks the endpoints the Android app uses.
 > **Screenshot 35**: the end of the output → `docs\evidence\35-http-test-powershell.png`
 
 ### 20. Stop everything
@@ -362,12 +362,77 @@ Close the demo windows with Ctrl+C. MySQL can keep running as a Windows service.
 
 ---
 
+## Part G: Android app in Android Studio (Stage 10)
+The app is in `android-client\`. It talks to the Payara server from Part E, so start it again after step 20
+(`C:\tools\payara6\bin\asadmin.bat start-domain`) with a **freshly reloaded** database (step 17). Detailed manual scenarios: `docs\testing\android-test-scenarios.md`.
+
+### 21. Install Android Studio (once)
+1. Install the current stable **Android Studio** from https://developer.android.com/studio (Narwhal 3 Feature Drop
+   2025.1.3 or newer; the project uses Android Gradle Plugin 8.13.2). Accept the defaults: it installs the
+   Android SDK and its own JDK. No separate JDK setting is needed for Android.
+2. If the setup wizard offers **Android Virtual Device** and **Hypervisor Driver / Windows Hypervisor Platform**, keep them ticked.
+   If the emulator later says acceleration is unavailable, turn on *Windows features › Windows Hypervisor Platform* and restart.
+
+### 22. Open, sync and build
+1. **File › Open…** and pick the folder `android-client` (not the project root). Choose **Trust Project**.
+2. Android Studio runs **Gradle Sync** by itself (bottom status bar; the first time it downloads Gradle 8.14.3 and libraries, 5–10 minutes).
+   It creates `local.properties` with your SDK path. That file is personal and is ignored by git; do not commit it.
+   Expected: *Sync finished* without errors. If it asks to upgrade the Android Gradle Plugin, choose **Don't ask for this project**.
+3. Run the automated tests from the **Terminal** tab in Android Studio (it opens in `android-client`):
+   ```powershell
+   .\gradlew.bat assembleDebug testDebugUnitTest
+   ```
+   Expected: `BUILD SUCCESSFUL`. The HTML report is `android-client\app\build\reports\tests\testDebugUnitTest\index.html`
+   (expected 48 tests, 0 failures, 1 skipped: `LiveServerTest` only runs when `SCASP_LIVE_URL` is set).
+   Optional, with Payara running and a fresh database:
+   `$env:SCASP_LIVE_URL = "http://localhost:8080/scasp"; .\gradlew.bat testDebugUnitTest --tests "*LiveServerTest*"` then
+   `Remove-Item Env:SCASP_LIVE_URL`.
+   > **Screenshot 36**: `BUILD SUCCESSFUL` in the terminal → `docs\evidence\36-android-gradle-build.png`
+   > **Screenshot 37**: the test report summary page in a browser → `docs\evidence\37-android-unit-tests.png`
+
+### 23. Create the emulator
+1. **Tools › Device Manager › + › Create Virtual Device** → **Pixel 7** → system image **API 35, Google Play** (x86_64; click the
+   download arrow) → Finish. Google Play images include Google Maps, which the *Open in map* step uses.
+2. Press ▶ next to the device. Wait for the home screen.
+
+### 24. Run the app
+1. In the toolbar, the run configuration **app** is selected automatically (Android Studio creates it for the `app` module).
+   Select the Pixel 7 emulator and click **Run 'app'** (green ▶, or Shift+F10).
+2. The SCASP sign-in screen appears. Keep **Server address** `http://10.0.2.2:8080/scasp`.
+   `10.0.2.2` is how the emulator reaches the Windows PC itself, so this is your local Payara.
+   (A real phone needs the PC's Wi-Fi address, and the app only allows unencrypted HTTP to 10.0.2.2/localhost,
+   so use the emulator for the demonstration.)
+
+### 25. Screenshots on the emulator
+Use the emulator's camera button (*Take screenshot*, it saves a PNG) or Win+Shift+S. Rotate with the rotate buttons in the emulator toolbar.
+
+| # | Do this (details in android-test-scenarios.md) | Expected | File |
+|---|---|---|---|
+| 38 | Sign in STU001 / student123 (A1) | Home: *Welcome, Alex Banda (STU001, STUDENT)* | `38-android-home.png` |
+| 39 | Course catalogue (A2) | 3 courses, banner *Live from server · updated …* | `39-android-courses-live.png` |
+| 40 | Register CSC301 for STU001 and STU002, then STU003 (A3) | *…was added to the waiting list* | `40-android-waitlist.png` |
+| 41 | STU003 › My registrations | CSC301 *Waiting list, position 1* | `41-android-registrations.png` |
+| 42 | Service requests: submit with description `x`, then a valid one (A5) | Validation message, then the request in the list | `42-android-request.png` |
+| 43 | Campus services › **Open in map** for Main Library (A6) | Map app with the pin (implicit intent) | `43-android-map-intent.png` |
+| 44 | Extended controls (⋯) › Location: -15.4181, 28.2819 › Set location. **Show my position** › *While using the app* (A7) | Position and *Nearest service: Campus Clinic* | `44-android-location-granted.png` |
+| 45 | Uninstall/reinstall (or Settings › Apps › SCASP › Permissions › Location › Don't allow), **Show my position** › **Don't allow** (B1) | *Location permission was denied…* | `45-android-permission-denied.png` |
+| 46 | Course catalogue, then `C:\tools\payara6\bin\asadmin.bat stop-domain`, pull down (C1) | Banner *Offline – showing data saved at …* | `46-android-offline-cache.png` |
+| 47 | Still offline, tap Register (C2) | *You are offline … nothing was saved* | `47-android-offline-change.png` |
+| 48 | Start Payara again (`start-domain`), sign out, sign in STU004, My registrations (D1) | *You have no registrations yet…* | `48-android-empty.png` |
+| 49 | Course catalogue, search `java`, rotate to landscape (E1) | Same filtered list and search text in landscape | `49-android-rotation.png` |
+
+Write PASS/FAIL for each scenario in `docs\testing\LOCAL_SMOKE_TEST_RESULTS.md` (section *Android*).
+Note: after scenario A3/A4 the database has changed; reload it (step 17) before running the HTTP test again.
+
+---
+
 ## Part F: Still to do by the group (cannot be automated)
 * **Usability test (Stage 7):** two people outside the group do steps 18.3–18.11. Write who (first names only),
   what confused them, and what you changed in `docs\testing\usability-test.md`.
 * **Contribution log:** fill `docs\contribution-log-template.csv` (task, owner, reviewer, evidence file).
 * **Git history:** commit this version and tag it, for example `git tag v11.0-final`.
-* **Android (Stage 10):** not part of this build. Build it in Android Studio and screenshot it separately.
+* **Android (Stage 10):** follow Part G and record the results of `docs\testing\android-test-scenarios.md`.
+* **Real campus coordinates:** replace the illustrative coordinates in `database\sample-data.sql` (table `campus_service`) and in `android-client\app\src\main\java\com\scasp\mobile\data\remote\MockBackend.kt` with verified NIPA Lusaka locations.
 * **Results:** update `docs\testing\LOCAL_SMOKE_TEST_RESULTS.md` with *your* date, laptop, and PASS/FAIL for every step above.
 
 ---

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+    <LinearLayout android:id="@+id/form" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="8dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/new_request" android:textAppearance="?attr/textAppearanceSubtitle1" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <Spinner android:id="@+id/category" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1"
+                android:contentDescription="@string/category" />
+            <Spinner android:id="@+id/priority" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1"
+                android:contentDescription="@string/priority" />
+        </LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="@string/description">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/description"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="textMultiLine|textCapSentences" android:maxLength="1000" android:maxLines="3" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button android:id="@+id/submit" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/submit" />
+    </LinearLayout>
+    <TextView android:id="@+id/staffNote" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:padding="8dp" android:text="@string/staff_queue_note" android:visibility="gone" />
+    <include android:id="@+id/list" layout="@layout/view_status_list" />
+</LinearLayout>

@@ -1,0 +1,1 @@
+{"courses":[{"courseCode":"CSC301","title":"Advanced Java","capacity":2,"enrolled":1,"waiting":0,"active":true},{"courseCode":"DB302","title":"Advanced Database","capacity":3,"enrolled":0,"waiting":0,"active":true},{"courseCode":"HCI308","title":"Human Computer Interface","capacity":2,"enrolled":2,"waiting":1,"active":true}]}

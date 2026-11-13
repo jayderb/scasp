@@ -8,4 +8,4 @@ Unit 6 - Servlets,web-application,Servlet controller session filter evidence
 Unit 7 - JSP/Pages,web-application,JSP EL JSTL MVC screenshots
 Unit 8 - RMI,rmi-administration,remote interface registry client failure test
 Unit 9 - CORBA,docs/corba-migration,IDL comparison and migration dossier
-Unit 10 - Android,android-client,activities intents cache map and permission tests
+Unit 10 - Android,android-client + web-application MobileApiServlet,"Activities with explicit intents and implicit geo intent; ViewModel/SavedStateHandle rotation; /api JSON endpoints with session/CSRF/role checks (http-smoke-test 27 checks); mock fallback; coroutines + WorkManager SyncWorker; SharedPreferences cache; on-tap location permission; 47 JVM/Robolectric tests (android-gradle-build-and-test-log.txt); emulator scenarios docs/testing/android-test-scenarios.md"

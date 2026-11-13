@@ -108,6 +108,39 @@ if ($env:SCASP_API_TOKEN) {
     Check "API with configured token" 200 (Code -H "Authorization: Bearer $($env:SCASP_API_TOKEN)" "$Base/api/announcements")
     Has "API lists the new announcement" "Library hours"
 }
+Write-Host "== Mobile JSON API (Stage 10 Android client)"
+$JarA = [IO.Path]::GetTempFileName(); $JarB = [IO.Path]::GetTempFileName(); $H = 'X-SCASP-Client: test'
+function JsonToken { $m = [regex]::Match((PageText), '"csrfToken":"([^"]*)"'); if ($m.Success) { $m.Groups[1].Value } else { '' } }
+Check "API login without client header is 403" 403 (Code -c $JarA -b $JarA -d 'userId=STU001&password=student123' "$Base/api/login")
+Check "API login wrong password is 401" 401 (Code -c $JarA -b $JarA -H $H -d 'userId=STU001&password=wrong' "$Base/api/login")
+Check "API courses without session is 401" 401 (Code "$Base/api/courses")
+Check "API login STU001" 200 (Code -c $JarA -b $JarA -H $H -d 'userId=STU001&password=student123' "$Base/api/login")
+Has "API login returns JSON user" '"userId":"STU001"'
+$AT = JsonToken
+Check "API me" 200 (Code -c $JarA -b $JarA "$Base/api/me")
+Check "API courses?q=java" 200 (Code -c $JarA -b $JarA "$Base/api/courses?q=java")
+Has "API course JSON" '"courseCode":"CSC301"'
+Check "API campus services" 200 (Code -c $JarA -b $JarA "$Base/api/campus-services")
+Has "API campus service coordinates" '"name":"Main Library"'
+Check "API register without CSRF header is 403" 403 (Code -c $JarA -b $JarA -d 'action=register&courseCode=DB302' "$Base/api/registrations")
+Check "API register DB302" 200 (Code -c $JarA -b $JarA -H "X-CSRF-Token: $AT" -d 'action=register&courseCode=DB302' "$Base/api/registrations")
+Has "API register result" '"result":"REGISTERED"'
+Check "API duplicate registration is 409" 409 (Code -c $JarA -b $JarA -H "X-CSRF-Token: $AT" -d 'action=register&courseCode=DB302' "$Base/api/registrations")
+Check "API student cannot read another student (gets own)" 200 (Code -c $JarA -b $JarA "$Base/api/registrations?studentId=STU002")
+Has "API registrations are the caller's" '"studentId":"STU001"'
+Check "API invalid request is 400" 400 (Code -c $JarA -b $JarA -H "X-CSRF-Token: $AT" -d 'category=CLEARANCE&description=x&priority=9' "$Base/api/requests")
+Check "API submit request is 201" 201 (Code -c $JarA -b $JarA -H "X-CSRF-Token: $AT" -d 'category=CLEARANCE&priority=2' --data-urlencode 'description=Library clearance for graduation' "$Base/api/requests")
+Check "API my requests" 200 (Code -c $JarA -b $JarA "$Base/api/requests")
+Has "API request listed" '"category":"CLEARANCE"'
+Check "API logout" 200 (Code -c $JarA -b $JarA -H "X-CSRF-Token: $AT" -X POST "$Base/api/logout")
+Check "API session ended" 401 (Code -c $JarA -b $JarA "$Base/api/me")
+Check "API login STAFF01" 200 (Code -c $JarB -b $JarB -H $H -d 'userId=STAFF01&password=staff123' "$Base/api/login")
+$BT = JsonToken
+Check "API staff registrations need studentId (400)" 400 (Code -c $JarB -b $JarB "$Base/api/registrations")
+Check "API staff reads STU001 registrations" 200 (Code -c $JarB -b $JarB "$Base/api/registrations?studentId=STU001")
+Has "API staff sees DB302" '"courseCode":"DB302"'
+Check "API staff cannot submit a student request (403)" 403 (Code -c $JarB -b $JarB -H "X-CSRF-Token: $BT" -d 'category=OTHER&priority=1&description=Staff test' "$Base/api/requests")
+Remove-Item -ErrorAction SilentlyContinue $JarA, $JarB
 Remove-Item -ErrorAction SilentlyContinue $JarS, $JarT, $JarX, $Body
 Write-Host "== Result: $($script:Pass) passed, $($script:Fail) failed"
 if ($script:Fail -ne 0) { exit 1 } else { exit 0 }
