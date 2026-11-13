@@ -1,0 +1,4 @@
+Date,Task,Owner,Reviewer,Completion evidence,Status
+YYYY-MM-DD,Architecture baseline,Joshua Lifumbo,Chipego Mukando,architecture.md,Planned
+YYYY-MM-DD,Core domain and collections,Chipego Mukando,Mumba Bupe,source code and tests,Planned
+YYYY-MM-DD,Web/mobile interface and test evidence,Mumba Bupe,Joshua Lifumbo,screenshots and test report,Planned

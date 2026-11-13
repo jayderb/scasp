@@ -1,0 +1,8 @@
+module SCASP {
+  typedef string StudentId;
+  typedef string CourseCode;
+  interface AcademicAdmin {
+    long countRegistrations(in CourseCode courseCode);
+    string getCourseSummary(in CourseCode courseCode);
+  };
+};

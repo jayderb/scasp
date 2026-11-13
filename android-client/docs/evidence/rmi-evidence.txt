@@ -1,0 +1,26 @@
+# RMI evidence (Stage 8) - captured 2026-11-13 13:38 SAST. Server and client are separate JVM processes on one computer (localhost).
+# Separate-computer test NOT performed (single build machine).
+
+## Process 1: java -Djava.rmi.server.hostname=127.0.0.1 com.scasp.rmi.RmiServer 1199
+SCASP RMI server ready on port 1199 as SCASPAdmin
+
+## Process 2: java com.scasp.rmi.RmiClient 127.0.0.1 1199 STAFF01
+Courses: [CSC301 - Advanced Java, DB302 - Advanced Database, HCI308 - Human Computer Interface]
+CSC301 registrations: 2
+CSC301 waiting list: [STU003]
+Capacity report (DTOs):
+  CourseSummaryDTO[courseCode=CSC301, title=Advanced Java, capacity=2, enrolled=2, waiting=1, active=true]
+  CourseSummaryDTO[courseCode=DB302, title=Advanced Database, capacity=3, enrolled=0, waiting=0, active=true]
+  CourseSummaryDTO[courseCode=HCI308, title=Human Computer Interface, capacity=2, enrolled=0, waiting=0, active=true]
+Request workload: {OPEN=1}
+Published announcement id: ANN001
+Recent audit:
+  AuditEventDTO[eventId=12, actor=STU003, action=WAITLIST, entity=WAITLIST:STU003:CSC301, occurredAt=2026-11-13T13:38:39.724096767]
+  AuditEventDTO[eventId=13, actor=STU002, action=SUBMIT_REQUEST, entity=SERVICE_REQUEST:ad6c9e20-e2bc-48ed-8577-ba93cd19919c, occurredAt=2026-11-13T13:38:39.740664864]
+  AuditEventDTO[eventId=14, actor=STAFF01, action=PUBLISH_ANNOUNCEMENT, entity=ANNOUNCEMENT:ANN001, occurredAt=2026-11-13T13:38:41.361637638]
+As STU001: Request refused: Not authorised: Staff role required
+exit=0
+
+## Process 3 (after the server process was stopped): java com.scasp.rmi.RmiClient 127.0.0.1 1199 STAFF01
+Administration server unavailable (registry not reachable): java.net.ConnectException: Connection refused
+exit=2

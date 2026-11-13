@@ -1,0 +1,13 @@
+# Race-condition evidence (Stage 2) - captured 2026-11-13 13:38 SAST
+$ java -cp core/target/classes com.scasp.concurrent.RaceConditionDemo
+Race-condition demonstration: 16 threads x 2000 attempts, capacity 1000
+run 1 UNSAFE: successfulTakes=1020 finalCount=1001 capacity=1000 invariantHeld=false
+run 2 UNSAFE: successfulTakes=1172 finalCount=1011 capacity=1000 invariantHeld=false
+run 3 UNSAFE: successfulTakes=1279 finalCount=1012 capacity=1000 invariantHeld=false
+run 4 UNSAFE: successfulTakes=1385 finalCount=1011 capacity=1000 invariantHeld=false
+run 5 UNSAFE: successfulTakes=1489 finalCount=1009 capacity=1000 invariantHeld=false
+run 1 SAFE:   successfulTakes=1000 finalCount=1000 capacity=1000 invariantHeld=true
+run 2 SAFE:   successfulTakes=1000 finalCount=1000 capacity=1000 invariantHeld=true
+run 3 SAFE:   successfulTakes=1000 finalCount=1000 capacity=1000 invariantHeld=true
+run 4 SAFE:   successfulTakes=1000 finalCount=1000 capacity=1000 invariantHeld=true
+run 5 SAFE:   successfulTakes=1000 finalCount=1000 capacity=1000 invariantHeld=true

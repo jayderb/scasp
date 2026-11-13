@@ -1,0 +1,11 @@
+Course unit,Project component,Evidence
+Unit 1 - Collections,core-domain,Map Set Queue Deque Comparable Comparator tests
+Unit 2 - Multithreading,concurrent-processing,BlockingQueue ExecutorService race-condition test
+Unit 3 - Networking,network-gateway,TCP client/server UDP design protocol test
+Unit 4 - Enterprise Beans,enterprise-services,Stateless and singleton bean design/deployment evidence
+Unit 5 - JDBC,persistence-jdbc,database schema prepared statements transaction report
+Unit 6 - Servlets,web-application,Servlet controller session filter evidence
+Unit 7 - JSP/Pages,web-application,JSP EL JSTL MVC screenshots
+Unit 8 - RMI,rmi-administration,remote interface registry client failure test
+Unit 9 - CORBA,docs/corba-migration,IDL comparison and migration dossier
+Unit 10 - Android,android-client,activities intents cache map and permission tests

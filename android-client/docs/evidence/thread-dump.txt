@@ -1,0 +1,159 @@
+# Thread dump (Stage 2) captured 2026-11-13 13:38 SAST with: jcmd <pid> Thread.print
+# Program: com.scasp.concurrent.ThreadDumpDemo - 3 platform workers (scasp-worker-1..3) are parked inside tasks waiting on a CountDownLatch,
+# while a registration task waits in the bounded ArrayBlockingQueue. Program output: READY pid=663346 stats=submitted=4 succeeded=0 failed=0 rejected=0 timedOut=0 cancelled=0 avg=0.000ms max=0.000ms
+
+663346:
+2026-11-13 13:38:13
+Full thread dump OpenJDK 64-Bit Server VM (21.0.13+9-LTS mixed mode, sharing)
+                 JDK version: OpenJDK Runtime Environment Temurin-21.0.13+9 (21.0.13+9) (build 21.0.13+9-LTS)
+
+Threads class SMR info:
+_java_thread_list=0x00007fb250002070, length=15, elements={
+0x00007fb2dc02a980, 0x00007fb2dc1716f0, 0x00007fb2dc172c60, 0x00007fb2dc1743f0,
+0x00007fb2dc175a30, 0x00007fb2dc176fd0, 0x00007fb2dc178b10, 0x00007fb2dc17a1d0,
+0x00007fb2dc186070, 0x00007fb2dc1891c0, 0x00007fb2400877d0, 0x00007fb2dc1d4850,
+0x00007fb2dc1d5a90, 0x00007fb2dc1d6ba0, 0x00007fb250000f50
+}
+
+"main" #1 [663347] prio=5 os_prio=0 cpu=64.72ms elapsed=2.18s tid=0x00007fb2dc02a980 nid=663347 waiting on condition  [0x00007fb2e0b0e000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at jdk.internal.misc.Unsafe.park(java.base@21.0.13/Native Method)
+	- parking to wait for  <0x00000007156adc58> (a java.util.concurrent.CountDownLatch$Sync)
+	at java.util.concurrent.locks.LockSupport.parkNanos(java.base@21.0.13/LockSupport.java:269)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire(java.base@21.0.13/AbstractQueuedSynchronizer.java:790)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.tryAcquireSharedNanos(java.base@21.0.13/AbstractQueuedSynchronizer.java:1160)
+	at java.util.concurrent.CountDownLatch.await(java.base@21.0.13/CountDownLatch.java:276)
+	at com.scasp.concurrent.ThreadDumpDemo.main(ThreadDumpDemo.java:23)
+
+"Reference Handler" #9 [663355] daemon prio=10 os_prio=0 cpu=0.50ms elapsed=2.16s tid=0x00007fb2dc1716f0 nid=663355 waiting on condition  [0x00007fb2bc872000]
+   java.lang.Thread.State: RUNNABLE
+	at java.lang.ref.Reference.waitForReferencePendingList(java.base@21.0.13/Native Method)
+	at java.lang.ref.Reference.processPendingReferences(java.base@21.0.13/Reference.java:246)
+	at java.lang.ref.Reference$ReferenceHandler.run(java.base@21.0.13/Reference.java:208)
+
+"Finalizer" #10 [663356] daemon prio=8 os_prio=0 cpu=0.40ms elapsed=2.16s tid=0x00007fb2dc172c60 nid=663356 in Object.wait()  [0x00007fb2bc772000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait0(java.base@21.0.13/Native Method)
+	- waiting on <0x00000007158025f0> (a java.lang.ref.NativeReferenceQueue$Lock)
+	at java.lang.Object.wait(java.base@21.0.13/Object.java:366)
+	at java.lang.Object.wait(java.base@21.0.13/Object.java:339)
+	at java.lang.ref.NativeReferenceQueue.await(java.base@21.0.13/NativeReferenceQueue.java:48)
+	at java.lang.ref.ReferenceQueue.remove0(java.base@21.0.13/ReferenceQueue.java:158)
+	at java.lang.ref.NativeReferenceQueue.remove(java.base@21.0.13/NativeReferenceQueue.java:89)
+	- locked <0x00000007158025f0> (a java.lang.ref.NativeReferenceQueue$Lock)
+	at java.lang.ref.Finalizer$FinalizerThread.run(java.base@21.0.13/Finalizer.java:173)
+
+"Signal Dispatcher" #11 [663357] daemon prio=9 os_prio=0 cpu=0.47ms elapsed=2.16s tid=0x00007fb2dc1743f0 nid=663357 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Service Thread" #12 [663358] daemon prio=9 os_prio=0 cpu=0.09ms elapsed=2.16s tid=0x00007fb2dc175a30 nid=663358 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Monitor Deflation Thread" #13 [663359] daemon prio=9 os_prio=0 cpu=0.26ms elapsed=2.16s tid=0x00007fb2dc176fd0 nid=663359 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread0" #14 [663360] daemon prio=9 os_prio=0 cpu=32.90ms elapsed=2.16s tid=0x00007fb2dc178b10 nid=663360 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+"C1 CompilerThread0" #17 [663361] daemon prio=9 os_prio=0 cpu=32.38ms elapsed=2.16s tid=0x00007fb2dc17a1d0 nid=663361 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+"Notification Thread" #18 [663362] daemon prio=9 os_prio=0 cpu=0.22ms elapsed=2.16s tid=0x00007fb2dc186070 nid=663362 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Common-Cleaner" #19 [663363] daemon prio=8 os_prio=0 cpu=0.34ms elapsed=2.16s tid=0x00007fb2dc1891c0 nid=663363 waiting on condition  [0x00007fb266ffe000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at jdk.internal.misc.Unsafe.park(java.base@21.0.13/Native Method)
+	- parking to wait for  <0x00000007158122f0> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.parkNanos(java.base@21.0.13/LockSupport.java:269)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(java.base@21.0.13/AbstractQueuedSynchronizer.java:1886)
+	at java.lang.ref.ReferenceQueue.await(java.base@21.0.13/ReferenceQueue.java:71)
+	at java.lang.ref.ReferenceQueue.remove0(java.base@21.0.13/ReferenceQueue.java:143)
+	at java.lang.ref.ReferenceQueue.remove(java.base@21.0.13/ReferenceQueue.java:218)
+	at jdk.internal.ref.CleanerImpl.run(java.base@21.0.13/CleanerImpl.java:140)
+	at java.lang.Thread.runWith(java.base@21.0.13/Thread.java:1596)
+	at java.lang.Thread.run(java.base@21.0.13/Thread.java:1583)
+	at jdk.internal.misc.InnocuousThread.run(java.base@21.0.13/InnocuousThread.java:186)
+
+"C2 CompilerThread1" #15 [663364] daemon prio=9 os_prio=0 cpu=13.13ms elapsed=2.15s tid=0x00007fb2400877d0 nid=663364 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+"scasp-worker-1" #20 [663365] prio=5 os_prio=0 cpu=0.51ms elapsed=2.13s tid=0x00007fb2dc1d4850 nid=663365 waiting on condition  [0x00007fb266d2e000]
+   java.lang.Thread.State: WAITING (parking)
+	at jdk.internal.misc.Unsafe.park(java.base@21.0.13/Native Method)
+	- parking to wait for  <0x00000007156adc58> (a java.util.concurrent.CountDownLatch$Sync)
+	at java.util.concurrent.locks.LockSupport.park(java.base@21.0.13/LockSupport.java:221)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire(java.base@21.0.13/AbstractQueuedSynchronizer.java:788)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireSharedInterruptibly(java.base@21.0.13/AbstractQueuedSynchronizer.java:1133)
+	at java.util.concurrent.CountDownLatch.await(java.base@21.0.13/CountDownLatch.java:230)
+	at com.scasp.concurrent.ThreadDumpDemo.lambda$main$0(ThreadDumpDemo.java:19)
+	at com.scasp.concurrent.ThreadDumpDemo$$Lambda/0x00007fb268004b88.call(Unknown Source)
+	at com.scasp.concurrent.RequestProcessor.runMeasured(RequestProcessor.java:106)
+	at com.scasp.concurrent.RequestProcessor.lambda$submit$0(RequestProcessor.java:73)
+	at com.scasp.concurrent.RequestProcessor$$Lambda/0x00007fb2680050d0.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(java.base@21.0.13/FutureTask.java:317)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(java.base@21.0.13/ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(java.base@21.0.13/ThreadPoolExecutor.java:642)
+	at java.lang.Thread.runWith(java.base@21.0.13/Thread.java:1596)
+	at java.lang.Thread.run(java.base@21.0.13/Thread.java:1583)
+
+"scasp-worker-2" #21 [663366] prio=5 os_prio=0 cpu=0.32ms elapsed=2.13s tid=0x00007fb2dc1d5a90 nid=663366 waiting on condition  [0x00007fb266c2e000]
+   java.lang.Thread.State: WAITING (parking)
+	at jdk.internal.misc.Unsafe.park(java.base@21.0.13/Native Method)
+	- parking to wait for  <0x00000007156adc58> (a java.util.concurrent.CountDownLatch$Sync)
+	at java.util.concurrent.locks.LockSupport.park(java.base@21.0.13/LockSupport.java:221)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire(java.base@21.0.13/AbstractQueuedSynchronizer.java:788)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireSharedInterruptibly(java.base@21.0.13/AbstractQueuedSynchronizer.java:1133)
+	at java.util.concurrent.CountDownLatch.await(java.base@21.0.13/CountDownLatch.java:230)
+	at com.scasp.concurrent.ThreadDumpDemo.lambda$main$0(ThreadDumpDemo.java:19)
+	at com.scasp.concurrent.ThreadDumpDemo$$Lambda/0x00007fb268004b88.call(Unknown Source)
+	at com.scasp.concurrent.RequestProcessor.runMeasured(RequestProcessor.java:106)
+	at com.scasp.concurrent.RequestProcessor.lambda$submit$0(RequestProcessor.java:73)
+	at com.scasp.concurrent.RequestProcessor$$Lambda/0x00007fb2680050d0.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(java.base@21.0.13/FutureTask.java:317)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(java.base@21.0.13/ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(java.base@21.0.13/ThreadPoolExecutor.java:642)
+	at java.lang.Thread.runWith(java.base@21.0.13/Thread.java:1596)
+	at java.lang.Thread.run(java.base@21.0.13/Thread.java:1583)
+
+"scasp-worker-3" #22 [663367] prio=5 os_prio=0 cpu=0.28ms elapsed=2.13s tid=0x00007fb2dc1d6ba0 nid=663367 waiting on condition  [0x00007fb266b2e000]
+   java.lang.Thread.State: WAITING (parking)
+	at jdk.internal.misc.Unsafe.park(java.base@21.0.13/Native Method)
+	- parking to wait for  <0x00000007156adc58> (a java.util.concurrent.CountDownLatch$Sync)
+	at java.util.concurrent.locks.LockSupport.park(java.base@21.0.13/LockSupport.java:221)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire(java.base@21.0.13/AbstractQueuedSynchronizer.java:788)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireSharedInterruptibly(java.base@21.0.13/AbstractQueuedSynchronizer.java:1133)
+	at java.util.concurrent.CountDownLatch.await(java.base@21.0.13/CountDownLatch.java:230)
+	at com.scasp.concurrent.ThreadDumpDemo.lambda$main$0(ThreadDumpDemo.java:19)
+	at com.scasp.concurrent.ThreadDumpDemo$$Lambda/0x00007fb268004b88.call(Unknown Source)
+	at com.scasp.concurrent.RequestProcessor.runMeasured(RequestProcessor.java:106)
+	at com.scasp.concurrent.RequestProcessor.lambda$submit$0(RequestProcessor.java:73)
+	at com.scasp.concurrent.RequestProcessor$$Lambda/0x00007fb2680050d0.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(java.base@21.0.13/FutureTask.java:317)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(java.base@21.0.13/ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(java.base@21.0.13/ThreadPoolExecutor.java:642)
+	at java.lang.Thread.runWith(java.base@21.0.13/Thread.java:1596)
+	at java.lang.Thread.run(java.base@21.0.13/Thread.java:1583)
+
+"Attach Listener" #23 [663410] daemon prio=9 os_prio=0 cpu=0.47ms elapsed=0.10s tid=0x00007fb250000f50 nid=663410 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"VM Thread" os_prio=0 cpu=0.88ms elapsed=2.17s tid=0x00007fb2dc166d70 nid=663354 runnable  
+
+"VM Periodic Task Thread" os_prio=0 cpu=1.35ms elapsed=2.17s tid=0x00007fb2dc1551e0 nid=663353 waiting on condition  
+
+"G1 Service" os_prio=0 cpu=0.30ms elapsed=2.18s tid=0x00007fb2dc13afa0 nid=663352 runnable  
+
+"G1 Refine#0" os_prio=0 cpu=0.24ms elapsed=2.18s tid=0x00007fb2dc139fe0 nid=663351 runnable  
+
+"G1 Conc#0" os_prio=0 cpu=0.22ms elapsed=2.18s tid=0x00007fb2dc0a4fb0 nid=663350 runnable  
+
+"G1 Main Marker" os_prio=0 cpu=0.08ms elapsed=2.18s tid=0x00007fb2dc0a4010 nid=663349 runnable  
+
+"GC Thread#0" os_prio=0 cpu=0.11ms elapsed=2.18s tid=0x00007fb2dc092fe0 nid=663348 runnable  
+
+JNI global refs: 9, weak refs: 0
+

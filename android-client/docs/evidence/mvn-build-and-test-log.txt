@@ -1,0 +1,254 @@
+# mvn clean package (all modules, JUnit 5, MySQL 8.4.6 test database scasp_test) - captured 2026-11-13 13:53 CAT, JDK 21.0.13, Maven 3.9.9
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] SCASP - Smart Campus Academic Services Platform                    [pom]
+[INFO] SCASP core (domain, collections, concurrency, networking)          [jar]
+[INFO] SCASP JDBC persistence (MySQL 8)                                   [jar]
+[INFO] SCASP enterprise beans (Jakarta EE 10)                             [jar]
+[INFO] SCASP web application (Servlets + JSP)                             [war]
+[INFO] SCASP RMI remote administration                                    [jar]
+[INFO] 
+[INFO] -----------------------< com.scasp:scasp-parent >-----------------------
+[INFO] Building SCASP - Smart Campus Academic Services Platform 1.0.0     [1/6]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ scasp-parent ---
+[INFO] 
+[INFO] ------------------------< com.scasp:scasp-core >------------------------
+[INFO] Building SCASP core (domain, collections, concurrency, networking) 1.0.0 [2/6]
+[INFO]   from core/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ scasp-core ---
+[INFO] Deleting /workspace/scasp/SCASP_Advanced_Java_Project/core/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ scasp-core ---
+[INFO] skip non existing resourceDirectory /workspace/scasp/SCASP_Advanced_Java_Project/core/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ scasp-core ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 48 source files with javac [debug release 21] to target/classes
+[WARNING] /workspace/scasp/SCASP_Advanced_Java_Project/core/src/main/java/com/scasp/network/CampusTcpServer.java:[148,76] explicit call to close() on an auto-closeable resource
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ scasp-core ---
+[INFO] skip non existing resourceDirectory /workspace/scasp/SCASP_Advanced_Java_Project/core/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ scasp-core ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 9 source files with javac [debug release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ scasp-core ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.scasp.model.DomainModelTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.068 s -- in com.scasp.model.DomainModelTest
+[INFO] Running com.scasp.concurrent.RaceConditionTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in com.scasp.concurrent.RaceConditionTest
+[INFO] Running com.scasp.concurrent.ThreadModelComparisonTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.061 s -- in com.scasp.concurrent.ThreadModelComparisonTest
+[INFO] Running com.scasp.concurrent.RequestProcessorTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.241 s -- in com.scasp.concurrent.RequestProcessorTest
+[INFO] Running com.scasp.network.CampusProtocolTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 s -- in com.scasp.network.CampusProtocolTest
+[INFO] Running com.scasp.network.CampusTcpServerTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.736 s -- in com.scasp.network.CampusTcpServerTest
+[INFO] Running com.scasp.network.UdpAndHttpTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.175 s -- in com.scasp.network.UdpAndHttpTest
+[INFO] Running com.scasp.AcademicServiceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.scasp.AcademicServiceTest
+[INFO] Running com.scasp.service.AcademicServiceRulesTest
+[INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in com.scasp.service.AcademicServiceRulesTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 72, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ scasp-core ---
+[INFO] Building jar: /workspace/scasp/SCASP_Advanced_Java_Project/core/target/scasp-core-1.0.0.jar
+[INFO] 
+[INFO] ------------------< com.scasp:scasp-persistence-jdbc >------------------
+[INFO] Building SCASP JDBC persistence (MySQL 8) 1.0.0                    [3/6]
+[INFO]   from persistence-jdbc/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ scasp-persistence-jdbc ---
+[INFO] Deleting /workspace/scasp/SCASP_Advanced_Java_Project/persistence-jdbc/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ scasp-persistence-jdbc ---
+[INFO] Copying 5 resources from ../database to target/classes/db
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ scasp-persistence-jdbc ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 10 source files with javac [debug release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ scasp-persistence-jdbc ---
+[INFO] skip non existing resourceDirectory /workspace/scasp/SCASP_Advanced_Java_Project/persistence-jdbc/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ scasp-persistence-jdbc ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 3 source files with javac [debug release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ scasp-persistence-jdbc ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.scasp.persistence.SqlScriptRunnerTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s -- in com.scasp.persistence.SqlScriptRunnerTest
+[INFO] Running com.scasp.persistence.JdbcRepositoryIntegrationTest
+[TestDatabase] MySQL 8.4.6
+[TestDatabase] MySQL 8.4.6
+[TestDatabase] MySQL 8.4.6
+[TestDatabase] MySQL 8.4.6
+[TestDatabase] MySQL 8.4.6
+[TestDatabase] MySQL 8.4.6
+[TestDatabase] MySQL 8.4.6
+[TestDatabase] MySQL 8.4.6
+[TestDatabase] MySQL 8.4.6
+[TestDatabase] MySQL 8.4.6
+[TestDatabase] MySQL 8.4.6
+[TestDatabase] MySQL 8.4.6
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.302 s -- in com.scasp.persistence.JdbcRepositoryIntegrationTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ scasp-persistence-jdbc ---
+[INFO] Building jar: /workspace/scasp/SCASP_Advanced_Java_Project/persistence-jdbc/target/scasp-persistence-jdbc-1.0.0.jar
+[INFO] 
+[INFO] ----------------< com.scasp:scasp-enterprise-services >-----------------
+[INFO] Building SCASP enterprise beans (Jakarta EE 10) 1.0.0              [4/6]
+[INFO]   from enterprise-services/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ scasp-enterprise-services ---
+[INFO] Deleting /workspace/scasp/SCASP_Advanced_Java_Project/enterprise-services/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ scasp-enterprise-services ---
+[INFO] skip non existing resourceDirectory /workspace/scasp/SCASP_Advanced_Java_Project/enterprise-services/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ scasp-enterprise-services ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 5 source files with javac [debug release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ scasp-enterprise-services ---
+[INFO] skip non existing resourceDirectory /workspace/scasp/SCASP_Advanced_Java_Project/enterprise-services/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ scasp-enterprise-services ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ scasp-enterprise-services ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ scasp-enterprise-services ---
+[INFO] Building jar: /workspace/scasp/SCASP_Advanced_Java_Project/enterprise-services/target/scasp-enterprise-services-1.0.0.jar
+[INFO] 
+[INFO] ------------------------< com.scasp:scasp-web >-------------------------
+[INFO] Building SCASP web application (Servlets + JSP) 1.0.0              [5/6]
+[INFO]   from web-application/pom.xml
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ scasp-web ---
+[INFO] Deleting /workspace/scasp/SCASP_Advanced_Java_Project/web-application/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ scasp-web ---
+[INFO] skip non existing resourceDirectory /workspace/scasp/SCASP_Advanced_Java_Project/web-application/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ scasp-web ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 18 source files with javac [debug release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ scasp-web ---
+[INFO] skip non existing resourceDirectory /workspace/scasp/SCASP_Advanced_Java_Project/web-application/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ scasp-web ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ scasp-web ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.scasp.web.WebSecurityTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.481 s -- in com.scasp.web.WebSecurityTest
+[INFO] Running com.scasp.web.RecordELResolverTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in com.scasp.web.RecordELResolverTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- war:3.4.0:war (default-war) @ scasp-web ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [scasp-web] in [/workspace/scasp/SCASP_Advanced_Java_Project/web-application/target/scasp]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/workspace/scasp/SCASP_Advanced_Java_Project/web-application/src/main/webapp]
+[INFO] Building war: /workspace/scasp/SCASP_Advanced_Java_Project/web-application/target/scasp.war
+[INFO] 
+[INFO] -----------------< com.scasp:scasp-rmi-administration >-----------------
+[INFO] Building SCASP RMI remote administration 1.0.0                     [6/6]
+[INFO]   from rmi-administration/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ scasp-rmi-administration ---
+[INFO] Deleting /workspace/scasp/SCASP_Advanced_Java_Project/rmi-administration/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ scasp-rmi-administration ---
+[INFO] skip non existing resourceDirectory /workspace/scasp/SCASP_Advanced_Java_Project/rmi-administration/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ scasp-rmi-administration ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 7 source files with javac [debug release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ scasp-rmi-administration ---
+[INFO] skip non existing resourceDirectory /workspace/scasp/SCASP_Advanced_Java_Project/rmi-administration/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ scasp-rmi-administration ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ scasp-rmi-administration ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.scasp.rmi.RmiSeparateProcessTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.325 s -- in com.scasp.rmi.RmiSeparateProcessTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ scasp-rmi-administration ---
+[INFO] Building jar: /workspace/scasp/SCASP_Advanced_Java_Project/rmi-administration/target/scasp-rmi-administration-1.0.0.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for SCASP - Smart Campus Academic Services Platform 1.0.0:
+[INFO] 
+[INFO] SCASP - Smart Campus Academic Services Platform .... SUCCESS [  0.078 s]
+[INFO] SCASP core (domain, collections, concurrency, networking) SUCCESS [  3.687 s]
+[INFO] SCASP JDBC persistence (MySQL 8) ................... SUCCESS [  2.847 s]
+[INFO] SCASP enterprise beans (Jakarta EE 10) ............. SUCCESS [  0.135 s]
+[INFO] SCASP web application (Servlets + JSP) ............. SUCCESS [  1.195 s]
+[INFO] SCASP RMI remote administration .................... SUCCESS [  0.745 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.761 s
+[INFO] Finished at: 2026-11-13T13:52:46+02:00
+[INFO] ------------------------------------------------------------------------
+EXIT=0

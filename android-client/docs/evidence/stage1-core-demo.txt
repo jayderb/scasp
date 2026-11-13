@@ -1,0 +1,45 @@
+# Core demonstration (Stage 1) - captured 2026-11-13 13:38 SAST on openjdk version "21.0.13" 2026-10-20 LTS
+$ java -cp core/target/classes com.scasp.app.Main
+SMART CAMPUS ACADEMIC SERVICES PLATFORM
+Courses (by code):  [CSC301 - Advanced Java (capacity 2), DB302 - Advanced Database (capacity 3), HCI308 - Human Computer Interface (capacity 2)]
+Courses (by title): [DB302 - Advanced Database (capacity 3), CSC301 - Advanced Java (capacity 2), HCI308 - Human Computer Interface (capacity 2)]
+STU001: REGISTERED
+STU002: REGISTERED
+STU003: WAITLISTED
+STU004: WAITLISTED
+Waiting list: [WaitlistEntry[studentId=STU003, courseCode=CSC301, position=1, createdAt=2026-11-13T13:38:01.349120496], WaitlistEntry[studentId=STU004, courseCode=CSC301, position=2, createdAt=2026-11-13T13:38:01.350743184]]
+After STU001 withdrew, enrolled=[STU002, STU003]
+Waiting list: [STU004]
+Request queue (priority order): [ServiceRequestSummary[requestId=cc379cea-d3a5-4133-bd1a-823c63d92e19, studentId=STU003, category=APPEAL, description=Exam result appeal, priority=5, status=OPEN, assignedTo=, createdAt=2026-11-13T13:38:01.382264827, updatedAt=2026-11-13T13:38:01.382264827], ServiceRequestSummary[requestId=ae8172b6-8e19-4646-a009-d8cf2da0ad9c, studentId=STU002, category=TRANSCRIPT, description=Official transcript for bursary, priority=2, status=OPEN, assignedTo=, createdAt=2026-11-13T13:38:01.380172655, updatedAt=2026-11-13T13:38:01.380172655]]
+STAFF01 takes: ServiceRequestSummary[requestId=cc379cea-d3a5-4133-bd1a-823c63d92e19, studentId=STU003, category=APPEAL, description=Exam result appeal, priority=5, status=ASSIGNED, assignedTo=STAFF01, createdAt=2026-11-13T13:38:01.382264827, updatedAt=2026-11-13T13:38:01.393691608]
+Student announcements: [Announcement[announcementId=ANN001, title=Registration reminder, body=Registration closes Friday., audience=STUDENTS, publishedAt=2026-11-13T13:38:01.401260640]]
+
+-- Reports (staff) --
+CSC301  Advanced Java              2/2 waiting=1
+DB302   Advanced Database          0/3 waiting=0
+HCI308  Human Computer Interface   0/2 waiting=0
+Waiting lists: {CSC301=[STU004]}
+Student registrations: {STU002=[CSC301], STU003=[CSC301]}
+Request workload: RequestWorkload[byStatus={OPEN=1, ASSIGNED=1}, openByAssignee={STAFF01=1}, byCategory={APPEAL=1, TRANSCRIPT=1}, averageOpenPriority=3.5]
+Audit counts: {ADD_COURSE=3, ADD_USER=6, ASSIGN_REQUEST=1, PROMOTE=1, PUBLISH_ANNOUNCEMENT=1, REGISTER=2, SUBMIT_REQUEST=2, WAITLIST=2, WITHDRAW=1}
+
+-- Audit trail --
+1 | 2026-11-13T13:38:01.330671612 | SYSTEM | ADD_USER | USER:STU001 | STUDENT
+2 | 2026-11-13T13:38:01.330767111 | SYSTEM | ADD_USER | USER:STU002 | STUDENT
+3 | 2026-11-13T13:38:01.330778253 | SYSTEM | ADD_USER | USER:STU003 | STUDENT
+4 | 2026-11-13T13:38:01.330785327 | SYSTEM | ADD_USER | USER:STU004 | STUDENT
+5 | 2026-11-13T13:38:01.330792791 | SYSTEM | ADD_USER | USER:STAFF01 | STAFF
+6 | 2026-11-13T13:38:01.330798608 | SYSTEM | ADD_USER | USER:ADMIN01 | ADMIN
+7 | 2026-11-13T13:38:01.331885964 | SYSTEM | ADD_COURSE | COURSE:CSC301 | Advanced Java
+8 | 2026-11-13T13:38:01.331933327 | SYSTEM | ADD_COURSE | COURSE:DB302 | Advanced Database
+9 | 2026-11-13T13:38:01.331966989 | SYSTEM | ADD_COURSE | COURSE:HCI308 | Human Computer Interface
+10 | 2026-11-13T13:38:01.348834555 | STU001 | REGISTER | REGISTRATION:STU001:CSC301
+11 | 2026-11-13T13:38:01.348967771 | STU002 | REGISTER | REGISTRATION:STU002:CSC301
+12 | 2026-11-13T13:38:01.350631378 | STU003 | WAITLIST | WAITLIST:STU003:CSC301 | position=1
+13 | 2026-11-13T13:38:01.350754913 | STU004 | WAITLIST | WAITLIST:STU004:CSC301 | position=2
+14 | 2026-11-13T13:38:01.365198331 | STU001 | WITHDRAW | REGISTRATION:STU001:CSC301
+15 | 2026-11-13T13:38:01.365335295 | STU001 | PROMOTE | REGISTRATION:STU003:CSC301 | from waiting list
+16 | 2026-11-13T13:38:01.381860824 | STU002 | SUBMIT_REQUEST | SERVICE_REQUEST:ae8172b6-8e19-4646-a009-d8cf2da0ad9c | TRANSCRIPT,p2
+17 | 2026-11-13T13:38:01.382316125 | STU003 | SUBMIT_REQUEST | SERVICE_REQUEST:cc379cea-d3a5-4133-bd1a-823c63d92e19 | APPEAL,p5
+18 | 2026-11-13T13:38:01.393729200 | STAFF01 | ASSIGN_REQUEST | SERVICE_REQUEST:cc379cea-d3a5-4133-bd1a-823c63d92e19 | to=STAFF01
+19 | 2026-11-13T13:38:01.401294442 | STAFF01 | PUBLISH_ANNOUNCEMENT | ANNOUNCEMENT:ANN001 | STUDENTS

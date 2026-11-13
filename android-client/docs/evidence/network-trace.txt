@@ -1,0 +1,63 @@
+# Network message trace (Stage 3) - captured 2026-11-13 13:38 SAST on localhost, separate JVM processes.
+# Application-level trace (each framed line as sent/received). No packet capture tool (tcpdump/Wireshark) was available in the build sandbox.
+
+## TCP client process: java -Dscasp.port=5055 com.scasp.network.CampusTcpClient <commands...>
+C: HELP
+S: OK PING|HELP|COURSES|SEATS|REGISTER|WAITLIST|ANNOUNCEMENTS|QUIT
+C: PING
+S: OK PONG
+C: COURSES
+S: OK CSC301,Advanced Java,2,ACTIVE;DB302,Advanced Database,3,ACTIVE;HCI308,Human Computer Interface,2,ACTIVE
+C: REGISTER|STU001|CSC301
+S: OK REGISTERED
+C: REGISTER|STU002|CSC301
+S: OK REGISTERED
+C: REGISTER|STU003|CSC301
+S: OK WAITLISTED
+C: SEATS|CSC301
+S: OK CSC301 enrolled=2 capacity=2 waiting=1
+C: WAITLIST|CSC301
+S: OK STU003
+C: REGISTER|STU001|CSC301
+S: ERR 409 CONFLICT Duplicate registration
+C: REGISTER|STU001
+S: ERR 400 MALFORMED REGISTER expects 2 argument(s)
+C: FLY
+S: ERR 400 UNKNOWN_COMMAND Use HELP
+
+## TCP server process: java com.scasp.network.CampusTcpServer 5055 (trace of the same session, peer address:port prefix)
+SCASP TCP gateway on port 5055 (commands: PING|HELP|COURSES|SEATS|REGISTER|WAITLIST|ANNOUNCEMENTS|QUIT)
+/127.0.0.1:41438 C: HELP
+/127.0.0.1:41438 S: OK PING|HELP|COURSES|SEATS|REGISTER|WAITLIST|ANNOUNCEMENTS|QUIT
+/127.0.0.1:41438 C: PING
+/127.0.0.1:41438 S: OK PONG
+/127.0.0.1:41438 C: COURSES
+/127.0.0.1:41438 S: OK CSC301,Advanced Java,2,ACTIVE;DB302,Advanced Database,3,ACTIVE;HCI308,Human Computer Interface,2,ACTIVE
+/127.0.0.1:41438 C: REGISTER|STU001|CSC301
+/127.0.0.1:41438 S: OK REGISTERED
+/127.0.0.1:41438 C: REGISTER|STU002|CSC301
+/127.0.0.1:41438 S: OK REGISTERED
+/127.0.0.1:41438 C: REGISTER|STU003|CSC301
+/127.0.0.1:41438 S: OK WAITLISTED
+/127.0.0.1:41438 C: SEATS|CSC301
+/127.0.0.1:41438 S: OK CSC301 enrolled=2 capacity=2 waiting=1
+/127.0.0.1:41438 C: WAITLIST|CSC301
+/127.0.0.1:41438 S: OK STU003
+/127.0.0.1:41438 C: REGISTER|STU001|CSC301
+/127.0.0.1:41438 S: ERR 409 CONFLICT Duplicate registration
+/127.0.0.1:41438 C: REGISTER|STU001
+/127.0.0.1:41438 S: ERR 400 MALFORMED REGISTER expects 2 argument(s)
+/127.0.0.1:41438 C: FLY
+/127.0.0.1:41438 S: ERR 400 UNKNOWN_COMMAND Use HELP
+/127.0.0.1:41438 C: QUIT
+/127.0.0.1:41438 S: OK BYE
+
+## Client run while no server listens on port 5099 (safe failure)
+SCASP gateway not reachable at localhost:5099 (Connection refused (connect failed))
+
+## UDP: java com.scasp.network.AnnouncementUdpClient 127.0.0.1 9095 'EVENT|...'
+Datagram sent to 127.0.0.1:9095
+
+## UDP listener process: java com.scasp.network.AnnouncementUdpServer 9095
+SCASP UDP listener on 9095 (Ctrl+C to stop)
+127.0.0.1:40433 -> EVENT|PUBLISH_ANNOUNCEMENT|ANNOUNCEMENT|ANN001|STAFF01

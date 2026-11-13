@@ -1,0 +1,10 @@
+# InetAddress demonstration (Stage 3) - captured 2026-11-13 13:38 SAST in the build sandbox (its DNS resolves every name, so the .invalid host resolves to a proxy address)
+Local host: name=grok-bot-vm-524462066 address=127.0.0.1
+Loopback: name=localhost address=127.0.0.1 isLoopback=true
+Resolve localhost: 127.0.0.1 (IPv4, siteLocal=false, loopback=true)
+Resolve localhost: 0:0:0:0:0:0:0:1 (IPv6, siteLocal=false, loopback=true)
+Resolve no-such-host.invalid: 198.18.0.1 (IPv4, siteLocal=false, loopback=false)
+Interface enp0s3: fe80:0:0:0:802b:38ff:fe3d:bcd0%enp0s3
+Interface enp0s3: 172.30.0.2
+Interface lo: 0:0:0:0:0:0:0:1%lo
+Interface lo: 127.0.0.1

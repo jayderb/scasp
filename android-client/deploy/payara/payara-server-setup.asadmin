@@ -1,0 +1,11 @@
+# Payara Server 6 (full server, asadmin / asadmin.bat) setup for SCASP.
+# Run from the project root with the domain already started:
+#   Windows:  <payara6>\bin\asadmin.bat multimode --file deploy\payara\payara-server-setup.asadmin
+#   Linux:    <payara6>/bin/asadmin multimode --file deploy/payara/payara-server-setup.asadmin
+# The DB password is NOT stored here: ${ENV=SCASP_DB_PASSWORD} is resolved by Payara from the environment of
+# the shell that ran "asadmin start-domain". Change portNumber if your MySQL is not on 3306.
+create-jdbc-connection-pool --datasourceclassname=com.mysql.cj.jdbc.MysqlDataSource --restype=javax.sql.DataSource --steadypoolsize=2 --maxpoolsize=16 --isconnectvalidatereq=true --validationmethod=auto-commit --property serverName=127.0.0.1:portNumber=3306:databaseName=scasp:user=scasp:password=${ENV=SCASP_DB_PASSWORD}:useSSL=false:allowPublicKeyRetrieval=true:characterEncoding=UTF-8 scasp-pool
+create-jdbc-resource --connectionpoolid=scasp-pool jdbc/scasp
+ping-connection-pool scasp-pool
+deploy --force=true --contextroot=scasp --name=scasp web-application/target/scasp.war
+list-applications

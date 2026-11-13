@@ -1,0 +1,5 @@
+# Platform vs virtual threads (Stage 2) - captured 2026-11-13 13:38 SAST, 8 CPUs
+$ java -cp core/target/classes com.scasp.concurrent.ThreadModelComparison 2000
+Workload: 2000 tasks, each blocking 20 ms; JDK 21.0.13+9-LTS; CPUs=8
+PLATFORM workers=16 elapsed=2515 ms  submitted=2000 succeeded=2000 failed=0 rejected=0 timedOut=0 cancelled=0 avg=20.100ms max=20.485ms
+VIRTUAL  workers=per-task elapsed=35 ms  submitted=2000 succeeded=2000 failed=0 rejected=0 timedOut=0 cancelled=0 avg=20.409ms max=24.054ms
